@@ -5,25 +5,37 @@ class RingBuffer:
     self.storage = [None]*capacity
 
   def append(self, item):
+
     # checks to see if the buffer is at its max capacity
-    if len(self.storage) == self.capacity:
-      self.storage.pop(0)
-      
-    # appends the item at the end of the buffer
-    self.storage.append(item)
-    print("Appending to buffer. Buffer now: ", self.storage)
+    if len(self.storage) == self.current:
+      # self.storage.pop(0)
+      self.current = 0
+    self.storage[self.current] = item
+    self.current += 1
 
 
   def get(self):
     #set variables for looping
-    x = None
+    x = self.storage[0]
     i = 0
 
     #while loop to check if the index value is None
-    while x == None:
-      x = array[i]
+    while x != None and i <= len(self.storage) -1:
+      x = self.storage[i]
       i += 1
 
-    print("Capacity is: ", self.capacity)
-    print("Last index is: ", len(self.storage) - 1)
-    return self.storage in range (i - 1, len(self.storage))
+    if x != None:
+      return self.storage
+
+    return self.storage[0:i-1:]
+
+# class FullRingBuffer:
+#   def __init__(self):
+
+
+#   def append(self, item):
+#     self.storage[self.current] = item
+#     self.current = (self.current + 1) % self.capacity
+
+#   def get(self):
+#     return self.storage[self.current:] + self.storage[:self.current]
