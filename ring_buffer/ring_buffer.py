@@ -15,6 +15,15 @@ class RingBuffer:
 
 
   def get(self):
+    #set variables for looping
+    x = None
+    i = 0
+
+    #while loop to check if the index value is None
+    while x == None:
+      x = array[i]
+      i += 1
+
     print("Capacity is: ", self.capacity)
     print("Last index is: ", len(self.storage) - 1)
-    return self.storage
+    return self.storage in range (i - 1, len(self.storage))
